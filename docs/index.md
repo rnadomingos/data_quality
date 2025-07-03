@@ -1,17 +1,38 @@
-# Welcome to MkDocs
+# Workshop 02 - Data Quality
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Para desenvolver o desafio de negocio, vamos montar a seguinte ETL
+
+## Fluxo
 
 ```mermaid
-gantt
-    title A Gantt Diagram
-    dateFormat YYYY-MM-DD
-    section Section
-        A task          :a1, 2014-01-01, 30d
-        Another task    :after a1, 20d
-    section Another
-        Task in Another :2014-01-12, 12d
-        another task    :24d
+graph TD;
+    A[Configura Variáveis] --> B[Ler o Banco SQL];
+    B --> V[Validação do Schema de Entrada];
+    V -->|Falha| X[Alerta de Erro];
+    V -->|Sucesso| C[Transformar os KPIs];
+    C --> Y[Validação do Schema de Saída];
+    Y -->|Falha| Z[Alerta de Erro];
+    Y -->|Sucesso| D[Salvar no DuckDB];
 ```
 
-# Parte 1 Data Quality - minuto 32
+## Contrado de dados
+
+::: app.schemas.ProdutoSchema
+
+::: app.schemas.ProdutoSchemaKPI
+
+## Carrega Configurações
+
+::: app.etl.load_settings
+
+## Lê o Banco SQL
+
+::: app.etl.extrair_do_sql
+
+## Transforma os KPI
+
+::: app.etl.transformar
+
+## Salvar dados para o DuckDB
+
+::: app.etl.load_to_duckdb
