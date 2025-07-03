@@ -1,8 +1,9 @@
 from datetime import datetime
 
+from pydantic import BaseModel, PositiveInt, validate_call
+
 #import logfire
 
-from pydantic import BaseModel, PositiveInt, validate_call
 
 # logfire.configure()
 # logfire.instrument_pydantic()  
