@@ -5,7 +5,8 @@ from pathlib import Path
 import pandera.pandas as pa
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from schemas import ProdutoSchema, ProdutoSchemaKPI
+
+#from app.schemas import ProdutoSchema, ProdutoSchemaKPI
 
 
 def load_settings():
@@ -24,7 +25,7 @@ def load_settings():
   }
   return settings
 
-@pa.check_output(ProdutoSchema.to_schema(), lazy=True)
+#@pa.check_output(ProdutoSchema.to_schema(), lazy=True)
 def extrair_do_sql(query: str) -> pd.DataFrame:
     """
     Extrai dados do banco de dados SQL usando uma consulta fornecida.
@@ -48,8 +49,8 @@ def extrair_do_sql(query: str) -> pd.DataFrame:
 
     return df_crm          
 
-@pa.check_input(ProdutoSchema.to_schema(), lazy=True)
-@pa.check_output(ProdutoSchemaKPI.to_schema(), lazy=True)
+#@pa.check_input(ProdutoSchema.to_schema(), lazy=True)
+#@pa.check_output(ProdutoSchemaKPI.to_schema(), lazy=True)
 def transformar(df: pd.DataFrame) -> pd.DataFrame:
      """
      Transforma dados da consulta SQL fornecida.
@@ -72,7 +73,7 @@ def transformar(df: pd.DataFrame) -> pd.DataFrame:
 
      return df
 
-@pa.check_input(ProdutoSchemaKPI.to_schema(), lazy=True)
+#@pa.check_input(ProdutoSchemaKPI.to_schema(), lazy=True)
 def load_to_duckdb(df:pd.DataFrame, tablename:str, db_file:str = 'sql/my_duckdb.db'):
      """
      Carrega o DataFrame no DuckDB, criando ou substituindo a tabela especifica
