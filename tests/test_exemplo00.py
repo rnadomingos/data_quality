@@ -1,4 +1,4 @@
-from app.funcao import funcao_ola_turma
+from app.exemplo_tdd import funcao_ola_turma
 
 
 def test_funcao_ola_turma():
